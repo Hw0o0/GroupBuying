@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
-
+    // 예시주석 하나추가할게용
     private EditText edit_id,edit_pw;
     private Button btn_save,btn_signup;
     private SharedPreferences preferences;
