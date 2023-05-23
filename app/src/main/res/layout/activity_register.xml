@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DAE5E3"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="341dp"
+            android:layout_height="195dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo2"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="5dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/setgps_btn"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginRight="15dp"
+                android:text="gps 설정하기"
+                app:backgroundTint="#8BA49C"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="200dp" />
+            <EditText
+                android:id="@+id/user_locate"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="15dp"
+                android:ems="10"
+                android:hint="위치"
+                android:inputType="textPersonName"
+                android:text=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="200dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+            android:text="상품명"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/setgps_btn"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editPruductName"
+            android:layout_width="340dp"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:hint="상품 이름을 입력해주세요."
+            android:inputType="textPersonName"
+            android:text=""
+            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/eventcontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+            android:text="이벤트 내용"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="64dp"
+                android:layout_height="53dp"
+                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/eventcontent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/productCount1"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ems="10"
+                android:hint="1"
+                android:inputType="number"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="30sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="189dp"
+                tools:layout_editor_absoluteY="392dp" />
+
+            <EditText
+                android:id="@+id/inputPersonCount"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="1"
+                android:inputType="number"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
+                app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/inputProductCount2"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:hint="이벤트 내용을 입력해주세요."
+            android:ems="10"
+            android:inputType="number"
+            android:text=""
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="509dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+            android:text="인원수"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:hint="0"
+                android:inputType="textPersonName"
+                android:text=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/personCountView"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="명"
+                android:textSize="25dp"
+                app:layout_constraintStart_toEndOf="@+id/inputProductCount2"
+                tools:ignore="MissingConstraints"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="49dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textSize="20dp"
+            android:text="가격"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/inputProductCount2"
+            tools:ignore="MissingConstraints" />
+
+
+
+
+
+
+        <EditText
+            android:id="@+id/editTextTextPersonName6"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="00원"
+            android:inputType="textPersonName"
+            android:text=""
+            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/start_btn"
+            android:layout_width="241dp"
+            android:layout_height="56dp"
+            android:text="공구시작"
+            android:layout_gravity="center"
+            app:backgroundTint="#8BA49C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6"
+            app:layout_constraintVertical_bias="0.466"
+            tools:ignore="MissingConstraints" />
+
+
+    </LinearLayout>
+</ScrollView>
