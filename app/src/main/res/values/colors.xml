@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 추가한 부분 -->
+    <color name="상태바">#99BCB6</color>
+    <color name="최상위상태바">#729590</color>
 </resources>

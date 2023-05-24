@@ -16,9 +16,6 @@
             android:name=".ProductListActivity"
             android:exported="false" />
         <activity
-            android:name=".MyPageActivity"
-            android:exported="false" />
-        <activity
             android:name=".MapLocationSettingActivity"
             android:exported="false" />
         <activity
