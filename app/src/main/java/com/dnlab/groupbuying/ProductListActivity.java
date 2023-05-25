@@ -120,6 +120,4 @@ public class ProductListActivity extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
     }
-
-
 }
