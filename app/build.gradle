@@ -38,5 +38,8 @@ dependencies {
     /*이미지 원*/
     implementation 'de.hdodenhof:circleimageview:3.1.0' //Circle ImageView
     /*AndroidManifest.xml의 (androidx.core.content.FileProvider)오류로 인한 추가 코드*/
-    implementation 'androidx.core:core:1.7.0'
+//    implementation 'androidx.core:core:1.7.0'
+
+    /*네이버지도 API*/
+    implementation 'com.naver.maps:map-sdk:3.16.2'
 }

@@ -16,6 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupBuying">
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="nxnv446prk" />
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -40,14 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 카메라 실행을 위한 코드 추가 -->
-        <provider android:name="androidx.core.content.FileProvider"
-            android:authorities="com.dnlab.groupbuying.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data android:name="androidx.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
 
     </application>
 
