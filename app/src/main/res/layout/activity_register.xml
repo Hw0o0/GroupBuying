@@ -37,6 +37,7 @@
                 android:layout_height="55dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginRight="15dp"
+                android:background="@drawable/round_button"
                 android:text="gps 설정하기"
                 app:backgroundTint="#8BA49C"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -56,7 +57,6 @@
                 tools:layout_editor_absoluteY="200dp" />
 
         </LinearLayout>
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -81,7 +81,27 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:ignore="MissingConstraints" />
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+    <Button
+        android:id="@+id/picture"
+        android:layout_width="160dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_button"
+        android:text="상품 촬영하기"
+        app:backgroundTint="#8BA49C" />
+
+    <ImageView
+        android:id="@+id/inputPicture"
+        android:layout_width="160dp"
+        android:layout_height="170dp"
+        tools:srcCompat="@tools:sample/avatars" />
+</LinearLayout>
         <TextView
             android:id="@+id/eventcontent"
             android:layout_width="wrap_content"
