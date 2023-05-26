@@ -4,16 +4,23 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,9 +47,12 @@ public class ProductListActivity extends AppCompatActivity {
             // 동적으로 TextView 생성 및 설정
             TextView productTextView = createTextView(productInfo);
 
-            // TextView를 LinearLayout에 추가
-            productLinearLayout.addView(productTextView);
+            // 동적으로 ImageView 생성 및 설정
+            ImageView productImageView = createImageView(productInfo);
 
+            // TextView와 ImageView를 LinearLayout에 추가
+            productLinearLayout.addView(productTextView);
+            productLinearLayout.addView(productImageView);
 
             // LinearLayout을 productListLayout에 추가
             productListLayout.addView(productLinearLayout);
@@ -63,7 +73,6 @@ public class ProductListActivity extends AppCompatActivity {
         return linearLayout;
     }
 
-    // TextView 생성 및 설정을 처리하는 메서드
     // TextView 생성 및 설정을 처리하는 메서드
     private TextView createTextView(String text) {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -90,6 +99,29 @@ public class ProductListActivity extends AppCompatActivity {
         return textView;
     }
 
+    // ImageView 생성 및 설정을 처리하는 메서드
+    private ImageView createImageView(String productInfo) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                dpToPx(80), dpToPx(80));
+        layoutParams.setMargins(dpToPx(5), dpToPx(5), dpToPx(5), dpToPx(5));
+
+        ImageView imageView = new ImageView(this);
+        imageView.setLayoutParams(layoutParams);
+
+        // 이미지 파일 경로 가져오기
+        String imagePath = getProductImagePath(productInfo);
+
+        if (imagePath != null) {
+            // 이미지 파일 로드 및 설정
+            Bitmap bitmap = loadImageFromFile(imagePath);
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+            }
+        }
+
+        return imageView;
+    }
+
     // 알림 대화상자 표시
     private void showNotificationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -114,10 +146,32 @@ public class ProductListActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
     // dp 값을 px로 변환하는 메서드
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
+    }
+
+    // 상품 이미지 파일 경로 가져오기
+    private String getProductImagePath(String productInfo) {
+        String[] lines = productInfo.split("\n");
+        for (String line : lines) {
+            if (line.startsWith("    사진 경로 :")) {
+                return line.substring(14); // "    사진 경로 :"를 제외한 경로 부분 반환
+            }
+        }
+        return null;
+    }
+
+    // 파일로부터 이미지 로드
+    private Bitmap loadImageFromFile(String imagePath) {
+        try {
+            File imageFile = new File(imagePath);
+            FileInputStream inputStream = new FileInputStream(imageFile);
+            return BitmapFactory.decodeStream(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

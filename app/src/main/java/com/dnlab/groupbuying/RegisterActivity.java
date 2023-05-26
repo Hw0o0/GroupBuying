@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,14 +34,16 @@ import java.util.Set;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button gps_btn, btn2;
-    private EditText editProductName, inputPersonCount, productCount1, productCount2, eventContext1, inputProductCount2, editTextTextPersonName6;
+    private EditText editProductName, inputPersonCount, productCount1, productCount2, eventContext1, inputProductCount2, inputPrice;
 
     /*카메라 관련 코드 추가*/
-    final private static String TAG = "태그명";
+        final private static String TAG = "ProductListActivity";
     private Button btn_photo;
     private ImageView iv_photo;
     final static int TAKE_PICTURE = 1;
 
+    String mCurrentPhotoPath;
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         // SharedPreferences 객체 가져오기
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        // 촬영한 사진을 파일로 저장
+        String photoPath = mCurrentPhotoPath;
+        // 새로운 상품 정보 생성
         btn2 = findViewById(R.id.start_btn);
         gps_btn = findViewById(R.id.setgps_btn);
         editProductName = findViewById(R.id.editPruductName);
@@ -56,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         eventContext1 = findViewById(R.id.inputProductCount2);
         inputPersonCount = findViewById(R.id.inputPersonCount);
         inputProductCount2 = findViewById(R.id.inputProductCount2);
-        editTextTextPersonName6 = findViewById(R.id.editTextTextPersonName6);
+        inputPrice = findViewById(R.id.editTextTextPersonName6);
 
         /*카메라 관련 코드*/
         btn_photo = findViewById(R.id.picture);
@@ -72,16 +79,26 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         btn_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.picture:
-                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, TAKE_PICTURE);
-                        break;
-                }
-            }
-        });
+                                         /*    @Override
+                                         public void onClick(View v) {
+                                             switch (v.getId()) {
+                                                 case R.id.picture:
+                                                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                                                     startActivityForResult(cameraIntent, TAKE_PICTURE);
+                                                     break;
+                                             }
+                                         }
+                                     });*/
+                                         @Override
+                                         public void onClick(View v) {
+                                             switch (v.getId()) {
+                                                 case R.id.picture:
+                                                     // 카메라 앱을 여는 소스
+                                                     dispatchTakePictureIntent();
+                                                     break;
+                                             }
+                                         }
+                                     });
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +118,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 String eventContext = eventContext1.getText().toString();
                                 String personCount = inputPersonCount.getText().toString();
                                 String productCount = inputProductCount2.getText().toString();
-                                String price = editTextTextPersonName6.getText().toString();
+                                String price = inputPrice.getText().toString();
+
                                 String newProduct = "\n    상품 주소 : 반여동 \n" + "    상품 이름 : " + productName + " " + "이벤트 내용 : " + eventContent1 + " + " + eventContent2 + " " + eventContext + "\n    인원 수 : " + personCount + " " + "상품수량 : " + productCount + " " + "가격 : " + price + "\n";
 
                                 // 기존 상품 정보에 새로운 상품 정보 추가
@@ -170,32 +188,65 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     // 카메라로 촬영한 사진의 썸네일을 가져와 이미지뷰에 띄워줌
+    //카메라로 촬형한 영상을 가져오는 부분
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        switch (requestCode) {
-            case TAKE_PICTURE:
-                if (resultCode == RESULT_OK && intent.hasExtra("data")) {
-                    Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
-                    if (bitmap != null) {
-                        iv_photo.setImageBitmap(bitmap);
+        try {
+            switch (requestCode) {
+                case REQUEST_TAKE_PHOTO: {
+                    if (resultCode == RESULT_OK) {
+                        File file = new File(mCurrentPhotoPath);
+                        Bitmap bitmap = MediaStore.Images.Media
+                                .getBitmap(getContentResolver(), Uri.fromFile(file));
+                        if (bitmap != null) {
+                            iv_photo.setImageBitmap(bitmap);
+                        }
                     }
-
+                    break;
                 }
-                break;
+            }
+
+        } catch (Exception error) {
+            error.printStackTrace();
         }
     }
+
     // ImageFile의 경로를 가져올 메서드 선언
     private File createImageFile() throws IOException {
-        // 파일이름을 세팅 및 저장경로 세팅
+        // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_"; File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File StorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,
-                ".jpg",
-                storageDir
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
         );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.dnlab.groupbuying.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
     }
 }
