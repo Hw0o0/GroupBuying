@@ -9,11 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText edit_id, edit_pw;
-    private Button btn_save, btn_signup;
+    private Button btn_login, btn_signup;
     private SharedPreferences preferences;
 
     @Override
@@ -23,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
         edit_id = findViewById(R.id.edt_id);
         edit_pw = findViewById(R.id.edt_pw);
-        btn_save = findViewById(R.id.btn_save);
+        btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_signup);
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
@@ -37,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        btn_save.setOnClickListener(new View.OnClickListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String inputId = edit_id.getText().toString();
