@@ -1,6 +1,7 @@
 package com.dnlab.groupbuying;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +14,8 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText edit_id, edit_pw;
-    private Button btn_save, btn_signup;
+    private EditText input_NickName, input_Id, input_Pw;
+    private Button btn_login, btn_signup,btn_chkNickName;
     private SharedPreferences preferences;
 
     @Override
@@ -23,8 +25,12 @@ public class LoginActivity extends AppCompatActivity {
 
         edit_id = findViewById(R.id.edt_id);
         edit_pw = findViewById(R.id.edt_pw);
-        btn_save = findViewById(R.id.btn_save);
+        input_NickName = findViewById(R.id.edit_nickname);
+        input_Id = findViewById(R.id.edit_id);
+        input_Pw = findViewById(R.id.edit_pw);
+        btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_signup);
+        btn_chkNickName = findViewById(R.id.btn_chk_nickName);
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
@@ -37,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        btn_save.setOnClickListener(new View.OnClickListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String inputId = edit_id.getText().toString();
@@ -202,4 +208,5 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
 }
