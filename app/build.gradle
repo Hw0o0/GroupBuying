@@ -34,12 +34,22 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
+    //레트로핏 사용을 위해
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //gson 변환을 위해
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     /*이미지 원*/
-    implementation 'de.hdodenhof:circleimageview:3.1.0' //Circle ImageView
+    //Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     /*AndroidManifest.xml의 (androidx.core.content.FileProvider)오류로 인한 추가 코드*/
 //    implementation 'androidx.core:core:1.7.0'
 
     /*네이버지도 API*/
     implementation 'com.naver.maps:map-sdk:3.16.2'
+
+    /*이미지를 서버로 업로드하기 위해 okhttp 라이브러리를 추가해야 합니다. build.gradle 파일의 dependencies 섹션에 아래의 코드를 추가해주세요:*/
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+    /*현재 위치 반환에 필요*/
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 }

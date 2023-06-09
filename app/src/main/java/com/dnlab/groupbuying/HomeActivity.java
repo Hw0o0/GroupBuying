@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button btn1, btn2, btnLogout;  // 로그아웃 버튼 추가
+    private Button btn1, btn2;  // 로그아웃 버튼 추가
+    private ImageButton btnLogout;
     private TextView txtWelcome;
 
     @Override
