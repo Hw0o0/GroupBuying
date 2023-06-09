@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.dnlab.groupbuying.Retrofit.RetrofitAPI;
 import com.dnlab.groupbuying.Retrofit.RetrofitClient;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -28,13 +30,15 @@ import java.util.TimeZone;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
     private LinearLayout chatLogLayout;
-    private RetrofitClient retrofitClient = new RetrofitClient();
+    private final RetrofitClient retrofitClient = new RetrofitClient();
     private EditText inputChat;
     private static final String TAG = "ChatRoomActivity";
+    private final List<ChatLog> chatLogs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,46 +51,57 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button sendButton = findViewById(R.id.button);
 
         RetrofitAPI retrofitAPI = retrofitClient.getRetrofitAPI();
-        retrofitAPI.getChatLogData().enqueue(new Callback<ChatLogs>() {
 
+        final Handler handler = new Handler();
+        final int delay = 1000;
+
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onResponse(Call<ChatLogs> call, Response<ChatLogs> response) {
-                ChatLogs chatLogs = response.body();
-                SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-                String nickname = preferences.getString("nickname", "");
-                if (chatLogs != null) {
-                    List<ChatLog> logs = chatLogs.getChatArray();
-                    if (logs != null && !logs.isEmpty()) {
-                        for (ChatLog chatLog : logs) {
-                            addChatLogToLayout(chatLog);
+            public void run() {
+                retrofitAPI.getChatLogData().enqueue(new Callback<ChatLogs>() {
+
+                    @Override
+                    @EverythingIsNonNull
+                    public void onResponse(Call<ChatLogs> call, Response<ChatLogs> response) {
+                        ChatLogs chatLogs = response.body();
+                        SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                        String nickname = preferences.getString("nickname", "");
+                        if (chatLogs != null) {
+                            List<ChatLog> logs = chatLogs.getChatArray();
+                            if (logs != null && !logs.isEmpty()) {
+                                for (ChatLog chatLog : logs) {
+                                    addChatLogToLayout(chatLog);
+                                }
+                            } else {
+                                Log.i(TAG, "채팅 로그가 비어 있습니다.");
+                            }
+                        } else {
+                            Log.i(TAG, "채팅 로그를 가져오는데 실패했습니다.");
                         }
-                    } else {
-                        Log.i(TAG, "채팅 로그가 비어 있습니다.");
                     }
-                } else {
-                    Log.i(TAG, "채팅 로그를 가져오는데 실패했습니다.");
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ChatLogs> call, Throwable t) {
-                Log.i(TAG, "네트워크 오류가 발생했습니다.");
+                    @Override
+                    @EverythingIsNonNull
+                    public void onFailure(Call<ChatLogs> call, Throwable t) {
+                        Log.i(TAG, "네트워크 오류가 발생했습니다.");
+                    }
+                });
+
+                handler.postDelayed(this, delay);
+
             }
-        });
+        } , delay);
 
         // 전송 버튼 클릭 시 서버에 채팅 데이터 전송
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ChatLog chatLog = new ChatLog();
-                String chat = inputChat.getText().toString().trim();
-                if (!TextUtils.isEmpty(chat)) {
-                    SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-                    String nickname = preferences.getString("nickname", "");
-                    chatLog.setUser(nickname);
-                    chatLog.setChat(chat);
-                    serverChatSend(chatLog);
-                }
+        sendButton.setOnClickListener(view -> {
+            ChatLog chatLog = new ChatLog();
+            String chat = inputChat.getText().toString().trim();
+            if (!TextUtils.isEmpty(chat)) {
+                SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                String nickname = preferences.getString("nickname", "");
+                chatLog.setUser(nickname);
+                chatLog.setChat(chat);
+                serverChatSend(chatLog);
             }
         });
     }
@@ -97,11 +112,13 @@ public class ChatRoomActivity extends AppCompatActivity {
         retrofitAPI.postData(chatLog).
                 enqueue(new Callback<ChatLog>() {
                     @Override
+                    @EverythingIsNonNull
                     public void onResponse(Call<ChatLog> call, Response<ChatLog> response) {
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
                                 ChatLog chatLog = response.body();
                                 Log.d(TAG, "성공");
+                                Log.d(TAG, "아이디: " + chatLog.getId());
                                 Log.d(TAG, "사용자: " + chatLog.getUser());
                                 Log.d(TAG, "채팅 내용: " + chatLog.getChat());
                                 addChatLogToLayout(chatLog); // 새로운 채팅 로그를 화면에 추가
@@ -112,6 +129,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     }
 
                     @Override
+                    @EverythingIsNonNull
                     public void onFailure(Call<ChatLog> call, Throwable t) {
                         Log.i(TAG, "네트워크 오류가 발생했습니다.");
                     }
@@ -120,6 +138,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     // LinearLayout에 채팅 로그 추가
     private void addChatLogToLayout(ChatLog chatLog) {
+        if (chatLogs.stream().anyMatch(chat -> chat.getId() == chatLog.getId())) {
+            return;
+        }
+
+        chatLogs.add(chatLog);
         LinearLayout chatLinearLayout = createLinearLayout();
         TextView chatTextView = createTextView(chatLog);
         chatLinearLayout.addView(chatTextView);
@@ -179,7 +202,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일 HH시 mm분", Locale.getDefault());
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));//대한민국 시간대 설정
-        String currentTime = sdf.format(new Date());
-        return currentTime;
+        return sdf.format(new Date());
     }
 }
