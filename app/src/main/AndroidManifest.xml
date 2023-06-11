@@ -23,7 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupBuying"
         android:usesCleartextTraffic="true">
-
         <!-- android:usesCleartextTraffic="true" -> Http에 접근하기위한 코드 -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

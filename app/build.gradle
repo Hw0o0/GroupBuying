@@ -41,6 +41,8 @@ dependencies {
     /*이미지 원*/
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
     /*AndroidManifest.xml의 (androidx.core.content.FileProvider)오류로 인한 추가 코드*/
 //    implementation 'androidx.core:core:1.7.0'
 
@@ -48,7 +50,7 @@ dependencies {
     implementation 'com.naver.maps:map-sdk:3.16.2'
 
     /*이미지를 서버로 업로드하기 위해 okhttp 라이브러리를 추가해야 합니다. build.gradle 파일의 dependencies 섹션에 아래의 코드를 추가해주세요:*/
-    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.7'
 
     /*현재 위치 반환에 필요*/
     implementation 'com.google.android.gms:play-services-location:16.0.0'

@@ -1,7 +1,6 @@
 package com.dnlab.groupbuying;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,23 +13,18 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText edit_id, edit_pw;
-    private EditText input_NickName, input_Id, input_Pw;
-    private Button btn_login, btn_signup,btn_chkNickName;
+    private Button btn_login, btn_signup;
     private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         edit_id = findViewById(R.id.edt_id);
         edit_pw = findViewById(R.id.edt_pw);
-        input_NickName = findViewById(R.id.edit_nickname);
-        input_Id = findViewById(R.id.edit_id);
-        input_Pw = findViewById(R.id.edit_pw);
         btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_signup);
-        btn_chkNickName = findViewById(R.id.btn_chk_nickName);
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
@@ -104,6 +98,12 @@ public class LoginActivity extends AppCompatActivity {
                                                 EditText editPw = alertDialog.findViewById(R.id.edit_pw);
                                                 EditText editNickname = alertDialog.findViewById(R.id.edit_nickname);
 
+                                                if (editId == null || editPw == null || editNickname == null) {
+                                                    // The EditTexts do not exist, show an error message
+                                                    showErrorMessage();
+                                                    return;
+                                                }
+
                                                 String userId = editId.getText().toString();
                                                 String userPw = editPw.getText().toString();
                                                 String nickname = editNickname.getText().toString();
@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 showRegistrationSuccessDialog();
 
                                                 // 이전 화면으로 돌아가기
-                                                onBackPressed();
+                                                dialog.dismiss();
                                             }
                                         })
                                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -209,4 +209,7 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    private void showErrorMessage() {
+        Toast.makeText(this, "입력되지 않은 값이 있습니다.", Toast.LENGTH_SHORT).show();
+    }
 }

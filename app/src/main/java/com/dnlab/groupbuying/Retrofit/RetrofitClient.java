@@ -58,8 +58,7 @@ public class RetrofitClient {
     }
 
 
-    public void serverProductSend(ProductImformation productImformation) { // Post 서버로 보내는것
-
+        public void serverProductSend(ProductImformation productImformation) { // Post 서버로 보내는것
         retrofitAPI.postData(productImformation).
                 enqueue(new Callback<ProductImformation>() {
                     @Override
