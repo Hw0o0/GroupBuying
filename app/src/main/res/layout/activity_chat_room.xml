@@ -39,16 +39,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:backgroundTint = "#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/input_chat"
-            android:layout_width="317dp"
+            android:layout_width="265dp"
             android:layout_height="58dp"
             android:hint="채팅을 입력하세요"
             android:textColor="#000000"
@@ -60,6 +61,8 @@
             android:id="@+id/button"
             android:layout_width="87dp"
             android:layout_height="58dp"
+            app:backgroundTint="#8BA49C"
+            android:background="@drawable/round_button"
             android:text="전송"
             tools:layout_editor_absoluteX="322dp"
             tools:layout_editor_absoluteY="670dp" />

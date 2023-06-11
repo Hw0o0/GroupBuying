@@ -28,7 +28,6 @@
                 android:id="@+id/imageView5"
                 android:layout_width="340dp"
                 android:layout_height="195dp"
-                android:layout_marginLeft="15dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.528"
@@ -37,13 +36,7 @@
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="5dp" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <EditText
+            <EditText
                     android:id="@+id/user_locate"
                     android:layout_width="350dp"
                     android:layout_height="55dp"
@@ -57,7 +50,7 @@
 
                 <Button
                     android:id="@+id/setgps_btn"
-                    android:layout_width="350dp"
+                    android:layout_width="320dp"
                     android:layout_height="55dp"
                     android:background="@drawable/round_button"
                     android:text="gps 설정하기"
@@ -66,7 +59,6 @@
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteY="200dp" />
 
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView2"
@@ -225,10 +217,10 @@
 
                 <EditText
                     android:id="@+id/productPrice"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:ems="10"
-                    android:hint="10000"
+                    android:hint="인당 가격을 입력해주세요."
                     android:inputType="number"
                     android:text=""
                     app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -253,6 +245,7 @@
                 android:layout_width="241dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:text="공구시작"
                 app:backgroundTint="#8BA49C"
                 app:layout_constraintBottom_toBottomOf="parent"

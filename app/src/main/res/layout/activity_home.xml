@@ -18,24 +18,35 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/txt_welcome"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            tools:text="님 환영합니다" />
+            android:layout_marginLeft="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_welcome_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="18sp"
+
+                tools:text="dd" />
+
+
+        </LinearLayout>
+
+
 
         <ImageButton
             android:id="@+id/logout_btn"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
             android:background="#DAE5E3"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/logout" />
@@ -48,8 +59,10 @@
         android:layout_height="280dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.403"
         app:srcCompat="@drawable/loge"
         tools:ignore="MissingConstraints" />
 

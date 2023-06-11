@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText edit_id, edit_pw;
     private Button btn_login, btn_signup;
     private SharedPreferences preferences;
+    private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +53,29 @@ public class LoginActivity extends AppCompatActivity {
                 if (!savedUsers.isEmpty()) {
                     // 사용자 정보가 존재하는 경우
                     String[] users = savedUsers.split(",");
+                    Log.d(TAG, "users in sharedPreference: " + Arrays.toString(users));
+
                     for (String user : users) {
                         // 사용자 정보 파싱
-                        String[] userInfo = user.split(":");
-                        String savedId = userInfo[0];
-                        String savedPw = userInfo[1];
+                        String[] userInfo;
+                        String savedId;
+                        String savedPw;
+                        try {
+                            userInfo = user.split(":");
+                            savedId = userInfo[0];
+                            savedPw = userInfo[1];
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            continue;
+                        }
 
                         if (inputId.equals(savedId) && inputPw.equals(savedPw)) {
                             // 아이디와 비밀번호가 일치하는 사용자를 찾았을 때
-                            // 로그인 성공 처리
-                            showLoginSuccessDialog();
 
                             // 닉네임 가져오기
                             String nickname = userInfo[2];
+
+                            // 로그인 성공 처리
+                            showLoginSuccessDialog();
 
                             // 로그인 상태와 닉네임 저장
                             SharedPreferences.Editor editor = preferences.edit();
@@ -125,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putString("users", savedUsers);
                                                 editor.putString("userid", userId);
                                                 editor.putString("userpw", userPw);
+                                                editor.putString("nickname", nickname);
                                                 editor.apply();
 
                                                 // 회원가입 성공 알림을 표시
@@ -168,10 +183,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // HomeActivity로 이동하는 코드
+                        dialog.dismiss();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        dialog.dismiss();
-                        finish();
                     }
                 });
 

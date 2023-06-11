@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,14 +17,17 @@ public class HomeActivity extends AppCompatActivity {
 
     private Button btn1, btn2;  // 로그아웃 버튼 추가
     private ImageButton btnLogout;
-    private TextView txtWelcome;
+    private TextView txtWelcomeNickname;
+
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        txtWelcome = findViewById(R.id.txt_welcome);
+
+        txtWelcomeNickname = findViewById(R.id.txt_welcome_nickname);
         btn1 = findViewById(R.id.signUp_btn);
         btn2 = findViewById(R.id.listView_btn);
         btnLogout = findViewById(R.id.logout_btn);  // 로그아웃 버튼
@@ -66,10 +70,10 @@ public class HomeActivity extends AppCompatActivity {
         // SharedPreferences에서 유저 정보 가져오기
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         String nickname = preferences.getString("nickname", "");
+        Log.d(TAG, "nickname in home: " + nickname);
 
         // 환영 메시지 설정
-        String welcomeMessage = nickname + "님 환영합니다";
-        txtWelcome.setText(welcomeMessage);
+        txtWelcomeNickname.setText(nickname+"님 환영합니다.");
     }
 
     @Override
