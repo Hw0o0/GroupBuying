@@ -32,15 +32,6 @@ public class LoginActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
-        // SharedPreferences에서 로그인 상태 확인
-        boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
-        if (isLoggedIn) {
-            // 이미 로그인 상태인 경우 HomeActivity로 이동
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

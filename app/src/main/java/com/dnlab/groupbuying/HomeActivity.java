@@ -76,22 +76,6 @@ public class HomeActivity extends AppCompatActivity {
         txtWelcomeNickname.setText(nickname+"님 환영합니다.");
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // SharedPreferences에서 로그인 상태 확인
-        SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
-
-        if (!isLoggedIn) {
-            // 로그인 상태가 아니라면 LoginActivity로 이동
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
-
     private View.OnClickListener btnOnclick(String dialogMessage, Class<?> activity) {
         return new View.OnClickListener() {
             @Override

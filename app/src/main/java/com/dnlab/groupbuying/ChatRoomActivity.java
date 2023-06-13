@@ -102,6 +102,9 @@ public class ChatRoomActivity extends AppCompatActivity {
                 chatLog.setUser(nickname);
                 chatLog.setChat(chat);
                 serverChatSend(chatLog);
+
+                // 메시지 전송 후 EditText 비우기
+                inputChat.setText("");
             }
         });
     }

@@ -70,7 +70,7 @@
                 android:layout_height="45dp"
                 android:layout_margin="10dp"
                 android:hint="비밀번호를 입력하세요."
-                android:inputType="text"
+                android:inputType="textPassword"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="84dp"
                 tools:layout_editor_absoluteY="402dp" />
