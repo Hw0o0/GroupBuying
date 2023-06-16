@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage("회원가입 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
@@ -168,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         String nickname = preferences.getString("nickname", ""); // 저장된 닉네임 가져오기
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.logo);
         builder.setTitle("로그인 성공")
                 .setMessage("로그인에 성공하였습니다.")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -186,6 +188,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.logo);
         builder.setTitle("로그인 실패")
                 .setMessage("아이디 또는 비밀번호가 잘못되었습니다.")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -201,6 +204,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showRegistrationSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.logo);
         builder.setTitle("회원가입 성공")
                 .setMessage("회원가입이 성공적으로 완료되었습니다. 로그인을 해주세요.")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {

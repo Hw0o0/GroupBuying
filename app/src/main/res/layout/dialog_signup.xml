@@ -20,7 +20,7 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            app:srcCompat="@drawable/loge" />
+            app:srcCompat="@drawable/logo" />
 
             <EditText
                 android:id="@+id/edit_nickname"

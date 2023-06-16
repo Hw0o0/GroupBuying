@@ -27,7 +27,7 @@
             app:layout_constraintHorizontal_bias="0.445"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/loge"
+            app:srcCompat="@drawable/logo"
             tools:ignore="MissingConstraints" />
 
 

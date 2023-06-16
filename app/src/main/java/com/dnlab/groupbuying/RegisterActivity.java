@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage("공구 시작 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
@@ -88,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage("GPS를 설정 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override

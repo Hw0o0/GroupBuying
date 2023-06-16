@@ -140,6 +140,7 @@ public class ProductListActivity extends AppCompatActivity {
     // 알림 대화상자 표시
     private void showNotificationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.logo);
         builder.setMessage("참석하시겠습니까?")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

@@ -40,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage("로그아웃하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
@@ -81,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage(dialogMessage)
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
