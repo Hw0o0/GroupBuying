@@ -18,7 +18,7 @@ public class RetrofitClient {
     private static final String TAG = "RetrofitClient";
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.64.88:3000/")
+            .baseUrl("https://groupbuying.fly.dev/")
             .addConverterFactory(GsonConverterFactory.create()) // gson을 사용해 JSON을 변환할 것이다.
             .build();
     private RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
@@ -58,8 +58,7 @@ public class RetrofitClient {
     }
 
 
-    public void serverProductSend(ProductImformation productImformation) { // Post 서버로 보내는것
-
+        public void serverProductSend(ProductImformation productImformation) { // Post 서버로 보내는것
         retrofitAPI.postData(productImformation).
                 enqueue(new Callback<ProductImformation>() {
                     @Override

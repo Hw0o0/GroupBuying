@@ -77,6 +77,7 @@ public class MapLocationSettingActivity extends AppCompatActivity implements OnM
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MapLocationSettingActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage("GPS를 설정 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
 

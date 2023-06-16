@@ -1,47 +1,36 @@
 package com.dnlab.groupbuying;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText edit_id, edit_pw;
-    private EditText input_NickName, input_Id, input_Pw;
-    private Button btn_login, btn_signup,btn_chkNickName;
+    private Button btn_login, btn_signup;
     private SharedPreferences preferences;
+    private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         edit_id = findViewById(R.id.edt_id);
         edit_pw = findViewById(R.id.edt_pw);
-        input_NickName = findViewById(R.id.edit_nickname);
-        input_Id = findViewById(R.id.edit_id);
-        input_Pw = findViewById(R.id.edit_pw);
         btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_signup);
-        btn_chkNickName = findViewById(R.id.btn_chk_nickName);
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-
-        // SharedPreferences에서 로그인 상태 확인
-        boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
-        if (isLoggedIn) {
-            // 이미 로그인 상태인 경우 HomeActivity로 이동
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,19 +44,29 @@ public class LoginActivity extends AppCompatActivity {
                 if (!savedUsers.isEmpty()) {
                     // 사용자 정보가 존재하는 경우
                     String[] users = savedUsers.split(",");
+                    Log.d(TAG, "users in sharedPreference: " + Arrays.toString(users));
+
                     for (String user : users) {
                         // 사용자 정보 파싱
-                        String[] userInfo = user.split(":");
-                        String savedId = userInfo[0];
-                        String savedPw = userInfo[1];
+                        String[] userInfo;
+                        String savedId;
+                        String savedPw;
+                        try {
+                            userInfo = user.split(":");
+                            savedId = userInfo[0];
+                            savedPw = userInfo[1];
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            continue;
+                        }
 
                         if (inputId.equals(savedId) && inputPw.equals(savedPw)) {
                             // 아이디와 비밀번호가 일치하는 사용자를 찾았을 때
-                            // 로그인 성공 처리
-                            showLoginSuccessDialog();
 
                             // 닉네임 가져오기
                             String nickname = userInfo[2];
+
+                            // 로그인 성공 처리
+                            showLoginSuccessDialog();
 
                             // 로그인 상태와 닉네임 저장
                             SharedPreferences.Editor editor = preferences.edit();
@@ -89,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setIcon(R.drawable.logo);
                 builder.setMessage("회원가입 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
@@ -103,6 +103,12 @@ public class LoginActivity extends AppCompatActivity {
                                                 EditText editId = alertDialog.findViewById(R.id.edit_id);
                                                 EditText editPw = alertDialog.findViewById(R.id.edit_pw);
                                                 EditText editNickname = alertDialog.findViewById(R.id.edit_nickname);
+
+                                                if (editId == null || editPw == null || editNickname == null) {
+                                                    // The EditTexts do not exist, show an error message
+                                                    showErrorMessage();
+                                                    return;
+                                                }
 
                                                 String userId = editId.getText().toString();
                                                 String userPw = editPw.getText().toString();
@@ -125,13 +131,14 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putString("users", savedUsers);
                                                 editor.putString("userid", userId);
                                                 editor.putString("userpw", userPw);
+                                                editor.putString("nickname", nickname);
                                                 editor.apply();
 
                                                 // 회원가입 성공 알림을 표시
                                                 showRegistrationSuccessDialog();
 
                                                 // 이전 화면으로 돌아가기
-                                                onBackPressed();
+                                                dialog.dismiss();
                                             }
                                         })
                                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -162,16 +169,16 @@ public class LoginActivity extends AppCompatActivity {
         String nickname = preferences.getString("nickname", ""); // 저장된 닉네임 가져오기
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.logo);
         builder.setTitle("로그인 성공")
                 .setMessage("로그인에 성공하였습니다.")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // HomeActivity로 이동하는 코드
+                        dialog.dismiss();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        dialog.dismiss();
-                        finish();
                     }
                 });
 
@@ -181,6 +188,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.logo);
         builder.setTitle("로그인 실패")
                 .setMessage("아이디 또는 비밀번호가 잘못되었습니다.")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -196,6 +204,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showRegistrationSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.logo);
         builder.setTitle("회원가입 성공")
                 .setMessage("회원가입이 성공적으로 완료되었습니다. 로그인을 해주세요.")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -209,4 +218,7 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    private void showErrorMessage() {
+        Toast.makeText(this, "입력되지 않은 값이 있습니다.", Toast.LENGTH_SHORT).show();
+    }
 }

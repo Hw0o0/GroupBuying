@@ -114,7 +114,7 @@ public class ProductListActivity extends AppCompatActivity {
         textView.setText("상품 주소: " + productImformation.getProductAddress() + "\n" +
                 "상품 이름: " + productImformation.getProductName() + " " +
                 "행사 내용: " + productImformation.getEventContent() + " " +
-                productImformation.getEvent1() +" + " + productImformation.getEvent2() +
+                productImformation.getEvent1() +" + " + productImformation.getEvent2() +"\n" +
                 "인원 수: " + productImformation.getPersonCount() + " " +
                 "상품 가격: " + productImformation.getProductPrice());
         // 텍스트 굵게 설정
@@ -137,10 +137,10 @@ public class ProductListActivity extends AppCompatActivity {
 
         return textView;
     }
-
     // 알림 대화상자 표시
     private void showNotificationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.logo);
         builder.setMessage("참석하시겠습니까?")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -161,7 +161,6 @@ public class ProductListActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
     // dp 값을 px로 변환하는 메서드
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;

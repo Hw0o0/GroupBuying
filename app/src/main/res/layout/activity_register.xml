@@ -1,277 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#DAE5E3"
-    android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DAE5E3"
         android:orientation="vertical"
-        android:padding="20dp">
-
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="340dp"
-            android:layout_height="195dp"
-            android:gravity="center"
-            android:layout_marginLeft="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.528"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/loge"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="5dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".RegisterActivity">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="340dp"
+                android:layout_height="195dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.528"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/logo"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="5dp" />
+
             <EditText
-                android:id="@+id/user_locate"
+                    android:id="@+id/user_locate"
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    android:ems="10"
+                    android:hint="위치"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="200dp" />
+
+                <Button
+                    android:id="@+id/setgps_btn"
+                    android:layout_width="320dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_button"
+                    android:text="gps 설정하기"
+                    app:backgroundTint="#8BA49C"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="200dp" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="상품명"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/setgps_btn"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/productName"
                 android:layout_width="350dp"
                 android:layout_height="55dp"
                 android:ems="10"
-                android:hint="위치"
+                android:hint="상품 이름을 입력해주세요."
                 android:inputType="textPersonName"
                 android:text=""
                 app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="200dp" />
-            <Button
-                android:id="@+id/setgps_btn"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/eventcontent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="이벤트 내용"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/event1"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+
+                    android:ems="10"
+                    android:hint="1"
+                    android:inputType="number"
+                    android:text=""
+                    app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="+"
+                    android:textSize="30sp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="189dp"
+                    tools:layout_editor_absoluteY="392dp" />
+
+                <EditText
+                    android:id="@+id/event2"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:ems="10"
+                    android:hint="1"
+                    android:inputType="number"
+
+
+                    android:text=""
+                    app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox"
+                    app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+                    tools:ignore="MissingConstraints" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/eventContent"
                 android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:background="@drawable/round_button"
-                android:text="gps 설정하기"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:hint="이벤트 내용을 입력해주세요."
+                android:inputType="textPersonName"
+                android:text=""
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="509dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="인원수"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/personCount"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:text=""
+                    app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/personCountView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="명"
+                    android:textSize="25dp"
+                    app:layout_constraintStart_toEndOf="@+id/inputProductCount2"
+                    tools:ignore="MissingConstraints" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:text="가격"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/inputProductCount2"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/productPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:hint="인당 가격을 입력해주세요."
+                    android:inputType="number"
+                    android:text=""
+                    app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/Price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="원"
+                    android:textSize="25dp"
+                    app:layout_constraintStart_toEndOf="@+id/inputProductCount2"
+                    tools:ignore="MissingConstraints" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/start_btn"
+                android:layout_width="241dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="공구시작"
                 app:backgroundTint="#8BA49C"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="200dp" />
-
-        </LinearLayout>
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="20dp"
-            android:text="상품명"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/setgps_btn"
-            tools:ignore="MissingConstraints" />
-
-        <EditText
-            android:id="@+id/productName"
-            android:layout_width="350dp"
-            android:layout_height="55dp"
-            android:ems="10"
-            android:hint="상품 이름을 입력해주세요."
-            android:inputType="textPersonName"
-            android:text=""
-            app:layout_constraintEnd_toStartOf="@+id/guideline6"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            tools:ignore="MissingConstraints" />
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity ="center">
-    <ImageView
-        android:id="@+id/inputPicture"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        tools:srcCompat="@tools:sample/avatars" />
-    <Button
-        android:id="@+id/picture"
-        android:layout_width="350dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_button"
-        android:text="상품 촬영하기"
-        app:backgroundTint="#8BA49C" />
-
-
-</LinearLayout>
-        <TextView
-            android:id="@+id/eventcontent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="20dp"
-            android:text="이벤트 내용"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/editPruductName"
-            tools:ignore="MissingConstraints" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/event1"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-
-                android:ems="10"
-                android:hint="1"
-                android:inputType="number"
-                android:enabled = "false"
-                android:text=""
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/editPruductName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6"
+                app:layout_constraintVertical_bias="0.466"
                 tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="+"
-                android:textSize="30sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="189dp"
-                tools:layout_editor_absoluteY="392dp" />
-
-            <EditText
-                android:id="@+id/event2"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-
-                android:ems="10"
-                android:hint="1"
-                android:inputType="number"
-                android:enabled = "false"
-
-                android:text=""
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
-                app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                app:layout_constraintStart_toEndOf="@+id/checkBox"
-                app:layout_constraintTop_toBottomOf="@+id/editPruductName"
-                tools:ignore="MissingConstraints" />
 
         </LinearLayout>
+    </ScrollView>
 
-        <EditText
-            android:id="@+id/eventContent"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:hint="이벤트 내용을 입력해주세요."
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="509dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="20dp"
-            android:text="인원수"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
-            tools:ignore="MissingConstraints" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/personCount"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="number"
-                android:text=""
-                app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/personCountView"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="명"
-                android:textSize="25dp"
-                app:layout_constraintStart_toEndOf="@+id/inputProductCount2"
-                tools:ignore="MissingConstraints"/>
-
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="49dp"
-            android:layout_height="wrap_content"
-            android:text="가격"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/inputProductCount2"
-            tools:ignore="MissingConstraints" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/productPrice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:hint="10000"
-                android:inputType="number"
-                android:text=""
-                app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/Price_text"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="원"
-                android:textSize="25dp"
-                app:layout_constraintStart_toEndOf="@+id/inputProductCount2"
-                tools:ignore="MissingConstraints"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/start_btn"
-            android:layout_width="241dp"
-            android:layout_height="56dp"
-            android:text="공구시작"
-            android:layout_gravity="center"
-            app:backgroundTint="#8BA49C"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6"
-            app:layout_constraintVertical_bias="0.466"
-            tools:ignore="MissingConstraints" />
-
-
-    </LinearLayout>
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

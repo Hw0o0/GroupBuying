@@ -1,99 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#DAE5E3"
-    android:orientation="vertical"
-    android:padding="25dp">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-
-        app:srcCompat="@drawable/loge" />
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="25dp">
+        android:layout_height="match_parent"
+        android:background="#DAE5E3"
+        android:orientation="vertical"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/logo" />
+
+            <EditText
+                android:id="@+id/edit_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="닉네임" />
+
+
+            <EditText
+                android:id="@+id/edit_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:hint="아이디" />
 
         <EditText
-            android:id="@+id/edit_nickname"
-            android:layout_width="200dp"
+            android:id="@+id/edit_pw"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="닉네임" />
-
-        <Button
-            android:id="@+id/btn_chk_nickName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8BA49C"
-            android:text="닉네임  중복 확인" />
+            android:hint="비밀번호"
+            android:inputType="textPassword" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        >
-        <EditText
-            android:id="@+id/edit_id"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:hint="아이디" />
-
-        <Button
-            android:id="@+id/btn_chk_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8BA49C"
-            android:text="아이디  중복 확인" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/edit_pw"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-
-        android:hint="비밀번호"
-        android:inputType="textPassword" />
-    <EditText
-        android:id="@+id/edit_pw_chk"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:hint="비밀번호 확인"
-        android:inputType="textPassword" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_ok"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8BA49C"
-            android:text="확인" />
-
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8BA49C"
-            android:text="돌아가기" />
-    </LinearLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

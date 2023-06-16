@@ -1,7 +1,10 @@
 package com.dnlab.groupbuying.Retrofit.product;
 
+import android.graphics.Bitmap;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class ProductImformation implements Serializable {
@@ -25,6 +28,8 @@ public class ProductImformation implements Serializable {
 
     @SerializedName("productPrice")
     private String productPrice;
+
+
 
     public String getProductAddress() {
         return productAddress;
@@ -82,5 +87,6 @@ public class ProductImformation implements Serializable {
     public void setProductPrice(String productPrice) {
         this.productPrice = productPrice;
     }
+
 
 }
